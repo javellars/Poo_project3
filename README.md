@@ -45,18 +45,3 @@ nova página ou separe-os com algum delimitador muito visível na diagramação)
 Critérios de Avaliação
 • Só serão considerados os programas que compilem sem erro e executem corretamente a(s)
 funcionalidade(s) requerida(s).
-# Item Max. pontos
-Pontuação Máxima
-01 Entrega completa de todos os ítens solicitados 0,5
-02 Código e documentação em inglês e Javadoc para todas as classes e métodos* 1,0
-03 Arquitetura de classes e pacotes (estruturação, divisão de responsabilidades) 1,0
-04 Qualidade e consistência do código (estilo, indentação, organização, limpeza, nomeação) 1,0
-05 Qualidade, consistência, e usabilidade da GUI 2,0
-06 Design das telas de diálogo e trabalho com imagens 1,2
-07 Uso correto de multithreading para manter resposta da GUI durante a comunicação 1,2
-08 Tratamento de exceções adequado 0,5
-09 Recursos extras (troca de arquivos) 0,6
-10 Aspecto geral do trabalho 1,0
-Total 10,0
-* não é necessária documentação javadoc para getters e setters que não executem transformações
-de dados.
