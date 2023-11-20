@@ -1,10 +1,8 @@
 # Poo_project3
-Projeto III: Conversação Online (Chat)
-SI400 – Programação Orientada a Objetos II
+Projeto III: Conversação Online (Chat) - SI400 – Programação Orientada a Objetos II
 Prof. André F. de Angelis
-Oferecimento 2S2023
-Projeto III: Conversação Online (Chat)
-Objetivo: desenvolver um programa em Java com interface gráfica para realizar conversação
+--------------------------------------------------------------------------------------------------------------------------------
+*Objetivo:* desenvolver um programa em Java com interface gráfica para realizar conversação
 por texto (chat).
 --------------------------------------------------------------------------------------------------------------------------------------
 * O programa deve estabelecer conexão entre duas máquinas via suite tcp/ip, possibilitando a conversação por texto online durante um período arbitrário e o encerramento suave da conexão.
