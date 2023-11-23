@@ -17,15 +17,27 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
-
+/**
+ * Esta classe representa uma tela de mensagem personalizada que herda de JDialog.
+ * É usada para exibir mensagens ao usuário.
+ */
 class TelaMensagem extends JDialog implements ActionListener {
+    // Componentes da tela
     private static final long serialVersionUID = 1L;
     private final JButton botaoFechar;
     private final JPanel painelTxt;
     private final JPanel painelBtn;
     private final PainelLogo painelLogo;
     private final JTextArea areaTxt;
-
+    
+    /**
+     * Construtor da classe TelaMensagem.
+     *
+     * @param janela A JFrame associada à tela de mensagem.
+     * @param titulo O título da tela de mensagem.
+     * @param texto O texto a ser exibido na tela de mensagem.
+     * @throws HeadlessException Se a máquina não tem cabeça (ou seja, se é um sistema sem GUI).
+     */
     TelaMensagem(JFrame janela, String titulo, String texto) throws HeadlessException {
         super(janela, titulo);
         setSize(800, 320);
@@ -59,12 +71,19 @@ class TelaMensagem extends JDialog implements ActionListener {
         painelBtn.add(botaoFechar);
         add(painelBtn, BorderLayout.SOUTH);
     }
-
+    /**
+     * Manipula eventos de ação para o botão fechar.
+     *
+     * @param arg0 O evento de ação.
+     */
     @Override
     public void actionPerformed(ActionEvent arg0) {
         this.setVisible(false);
     }
-
+    
+    /**
+     * Formata a área de texto para exibição.
+     */
     private void formatareaTxt() {
         areaTxt.setPreferredSize(new Dimension(580, 220));
         areaTxt.setForeground(Color.black);
