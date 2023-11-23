@@ -1,4 +1,4 @@
-package com.mycompany.projeto3poo.src.view;
+package src.view;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
