@@ -1,5 +1,4 @@
- 
-package src.view;
+package com.mycompany.projeto3poo.src.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -20,6 +19,12 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+/**
+ * A classe Janela representa a interface gráfica principal do ChatGUI-Grupo3.
+ * Esta classe herda de JFrame e implementa a interface ActionListener para lidar com eventos.
+ * Ela contém métodos para configurar o menu, configurar os componentes da interface e configurar ações de botões.
+ * Também inclui a implementação do método actionPerformed para responder a eventos de botões.
+ */
 public class Janela extends JFrame implements ActionListener {
 
     // declarações
@@ -36,7 +41,6 @@ public class Janela extends JFrame implements ActionListener {
     private JLabel statusConexaoLabel;
 
     // Construtor
-
     public Janela() {
         setTitle("ChatGUI-Grupo 3");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,11 +52,17 @@ public class Janela extends JFrame implements ActionListener {
         acaoSetup();
         
     }
-    
+    /**
+     * Método para exibir uma tela de mensagem.
+     * @param tela A tela de mensagem a ser exibida.
+     */
     private void mostrarTelaMensagem(TelaMensagem tela) {
     	tela.setVisible(true);
     }
-    
+    /**
+     * Método para exibir uma tela de mensagem.
+     * @param tela A tela de mensagem a ser exibida.
+     */    
     public void menuSetup(){
      
         menuBar = new JMenuBar();
@@ -72,7 +82,10 @@ public class Janela extends JFrame implements ActionListener {
         ajudaItem = new JMenuItem("Ajuda");
         ajudaMenu.add(ajudaItem);
     }
-
+    
+    /**
+     * Configura os componentes da interface, como áreas de texto, botões, etc.
+     */
     public void componentesSetup(){
         // Display chat
         areaDeChat = new JTextArea();
@@ -104,7 +117,10 @@ public class Janela extends JFrame implements ActionListener {
         statusConexaoLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         areaSul.add(statusConexaoLabel, BorderLayout.SOUTH);
     }
-
+    
+    /**
+     * Configura as ações para os botões e itens de menu.
+     */
     public void acaoSetup() {
         // Eventos
         enviarButton.addActionListener(this);
