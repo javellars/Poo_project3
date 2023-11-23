@@ -1,4 +1,4 @@
-package com.mycompany.projeto3poo;
+package main;
 
 import com.mycompany.projeto3poo.src.view.Janela;
 /**
