@@ -1,4 +1,4 @@
-package com.mycompany.projeto3poo.src.view;
+package src.view;
 
 import java.util.ArrayList;
 import java.util.List;
