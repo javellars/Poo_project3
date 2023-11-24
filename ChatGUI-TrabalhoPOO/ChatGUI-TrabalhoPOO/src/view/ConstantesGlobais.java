@@ -37,6 +37,7 @@ public class ConstantesGlobais {
         return text.toString();
     }
 
+    public static final String tituloajuda = "AJUDA";
     public static final String greetingstxt = "Bem-vindo ao programa de conexão de máquinas via suite TCP/IP para conversação online! Este software permite estabelecer uma conexão entre duas máquinas para troca de mensagens por texto durante um período determinado, possibilitando um encerramento suave da conexão.";
     public static final String conexaotxt = "Conexão: No menu Arquivo, selecione 'Abrir conexão' para estabelecer a conexão entre as máquinas. Você será solicitado a inserir o endereço IP e a porta para se conectar à outra máquina.";
     public static final String encerramentotxt = "Encerramento: Ao selecionar 'Fechar conexões' no menu Arquivo, o programa encerrará as conexões ativas e finalizará o software de maneira adequada.";
