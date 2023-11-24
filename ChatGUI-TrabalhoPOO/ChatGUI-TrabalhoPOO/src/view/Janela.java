@@ -123,6 +123,7 @@ public class Janela extends JFrame implements ActionListener {
             mostrarTelaMensagem(new TelaMensagem(this, "Sobre - " + ConstantesGlobais.versao, ConstantesGlobais.getTextoSobre()));
             System.out.println("Clicou em sobre");
         } else if (e.getSource() == ajudaItem) {
+            mostrarTelaMensagem(new TelaMensagem(this, "Ajuda - " + ConstantesGlobais.getTextoSAjuda()));
             System.out.println("Clicou em ajuda");
         } else if (e.getSource() == conectarItem) {
             System.out.println("Clicou em conectar");
