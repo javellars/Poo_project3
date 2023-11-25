@@ -19,7 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -35,7 +34,7 @@ public class ChatServer extends JFrame implements ActionListener {
     private JMenu arquivoMenu;
     private JMenuItem sobreItem;
     private JMenuItem ajudaItem;
-    private JMenuItem conectarItem;
+    //private JMenuItem conectarItem;
     private JMenuItem sairItem;
     private JButton enviarButton;
     private JTextField mensagemTextField;
@@ -58,7 +57,7 @@ public class ChatServer extends JFrame implements ActionListener {
             componentesSetup();
             acaoSetup();
             
-            ss = new ServerSocket(9999);
+            ss = new ServerSocket(9998);
             s = ss.accept();
             frame.setVisible(false);
             out = new ObjectOutputStream(s.getOutputStream());
@@ -80,8 +79,6 @@ public class ChatServer extends JFrame implements ActionListener {
 
         arquivoMenu = new JMenu("Arquivo");
         menuBar.add(arquivoMenu);
-        conectarItem = new JMenuItem("Conectar");
-        arquivoMenu.add(conectarItem);
         sairItem = new JMenuItem("Sair");
         arquivoMenu.add(sairItem);
 
@@ -130,7 +127,6 @@ public class ChatServer extends JFrame implements ActionListener {
         enviarButton.addActionListener(this);
         sobreItem.addActionListener(this);
         ajudaItem.addActionListener(this);
-        conectarItem.addActionListener(this);
         sairItem.addActionListener(this);
     }
 
@@ -143,45 +139,33 @@ public class ChatServer extends JFrame implements ActionListener {
             mostrarTelaMensagem(new TelaMensagem(this, "Sobre - " + ConstantesGlobais.versao, ConstantesGlobais.getTextoSobre()));
             System.out.println("Clicou em sobre");
         } else if (e.getSource() == ajudaItem) {
+        	mostrarTelaMensagem(new TelaMensagem(this, "Ajuda - " + ConstantesGlobais.tituloajuda, ConstantesGlobais.getTextoAjuda()));
             System.out.println("Clicou em ajuda");
-        } else if (e.getSource() == conectarItem) {
-            System.out.println("Clicou em conectar");
         } else if (e.getSource() == sairItem) {
             System.exit(0);
         } else if (e.getSource() == enviarButton) {
-            /*String mensagem = mensagemTextField.getText();
-            if (!mensagem.isEmpty()) {
-                areaDeChat.append("Você: " + mensagem + "\n");
-                mensagemTextField.setText("");
-            }*/
         	if (!mensagemTextField.getText().equals("")) { // TO be sure that our text box is not empty
                 String msg = mensagemTextField.getText();
-                SendMessage(msg); //We are going to create this function now
+                enviarMensagem(msg); //We are going to create this function now
                 mensagemTextField.setText("");
             }
         }
     }
 
-    /*public static void main(String args[]) throws IOException {
-        ChatServer ser = new ChatServer();
-        ser.setVisible(true);
-        ser.ReciveMessage();
-    }*/
-
-    private void SendMessage(String msg) {
+    private void enviarMensagem(String msg) {
         try {
             out.writeObject(msg);
-            areaDeChat.append("You: " + msg + "\n");
+            areaDeChat.append("Você: " + msg + "\n");
         } catch (Exception e) {
         }
     }
 
-    public void ReciveMessage() {
+    public void receberMensagem() {
         String msg;
         while (true) {
             try {
                 msg = (String) in.readObject();
-                areaDeChat.append("Client: " + msg + "\n");
+                areaDeChat.append("Cliente: " + msg + "\n");
             } catch (Exception e) {
             }
         }

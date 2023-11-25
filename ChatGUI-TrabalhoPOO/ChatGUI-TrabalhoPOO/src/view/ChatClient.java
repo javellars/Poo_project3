@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -23,9 +22,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ChatClient extends JFrame implements ActionListener {
 
@@ -46,21 +42,6 @@ public class ChatClient extends JFrame implements ActionListener {
     ObjectInputStream in;
     // Construtor
 
-    public ChatClient(String ip, final JFrame frame) throws IOException {
-        setTitle("ChatGUI-Grupo 3");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 500);
-        setLayout(new BorderLayout());
-
-        menuSetup();
-        componentesSetup();
-        acaoSetup();
-        s = new Socket(ip, 9999); // We are going to use 9999 as the port number
-
-        out = new ObjectOutputStream(s.getOutputStream());
-        in = new ObjectInputStream(s.getInputStream());
-        frame.setVisible(false);
-    }
     
     public ChatClient() throws IOException {
         setTitle("ChatGUI-Grupo 3");
@@ -71,10 +52,6 @@ public class ChatClient extends JFrame implements ActionListener {
         menuSetup();
         componentesSetup();
         acaoSetup();
-        s = new Socket("127.0.0.1", 9999); // We are going to use 9999 as the port number
-
-        out = new ObjectOutputStream(s.getOutputStream());
-        in = new ObjectInputStream(s.getInputStream());
     }
     
     private void mostrarTelaMensagem(TelaMensagem tela) {
@@ -151,45 +128,49 @@ public class ChatClient extends JFrame implements ActionListener {
             mostrarTelaMensagem(new TelaMensagem(this, "Sobre - " + ConstantesGlobais.versao, ConstantesGlobais.getTextoSobre()));
             System.out.println("Clicou em sobre");
         } else if (e.getSource() == ajudaItem) {
+        	mostrarTelaMensagem(new TelaMensagem(this, "Ajuda - " + ConstantesGlobais.tituloajuda, ConstantesGlobais.getTextoAjuda()));
             System.out.println("Clicou em ajuda");
         } else if (e.getSource() == conectarItem) {
+        	conectar();
             System.out.println("Clicou em conectar");
         } else if (e.getSource() == sairItem) {
             System.exit(0);
         } else if (e.getSource() == enviarButton) {
-            /*String mensagem = mensagemTextField.getText();
-            if (!mensagem.isEmpty()) {
-                areaDeChat.append("Você: " + mensagem + "\n");
-                mensagemTextField.setText("");
-           }*/
-        	if (!mensagemTextField.getText().equals("")) { // TO be sure that our text box is not empty
+        	if (!mensagemTextField.getText().equals("")) { 
                 String msg = mensagemTextField.getText();
-                SendMessage(msg); //We are going to create this function now
+                enviarMensagem(msg); 
                 mensagemTextField.setText("");
             }
         }
     }
     
-    public static void main(String args[]) throws IOException {
-        ChatClient c = new ChatClient();
-        c.setVisible(true);
-        c.ReciveMessage();
+    public void conectar() {
+    	new Popupconnect();
+		String ip = Popupconnect.showPopUp();
+        try {
+			s = new Socket(ip, 9998);
+	        out = new ObjectOutputStream(s.getOutputStream());
+	        in = new ObjectInputStream(s.getInputStream());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
-    private void SendMessage(String msg) {
+    private void enviarMensagem(String msg) {
         try {
             out.writeObject(msg);
-            areaDeChat.append("You: " + msg + "\n");
+            areaDeChat.append("Você: " + msg + "\n");
         } catch (Exception e) {
         }
     }
 
-    public void ReciveMessage() {
+    public void receberMensagem() {
         String msg;
         while (true) {
             try {
                 msg = (String) in.readObject();
-                areaDeChat.append("Server: " + msg + "\n");
+                areaDeChat.append("Servidor: " + msg + "\n");
             } catch (Exception e) {
             }
         }

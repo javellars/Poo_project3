@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Popupconnect {
 
-    public static int showPopUp() {
+    public static String showPopUp() {
         JTextField textField = new JTextField(10);
         JPanel panel = new JPanel();
         panel.add(new JLabel("Digite o valor de IP para conectar:"));
