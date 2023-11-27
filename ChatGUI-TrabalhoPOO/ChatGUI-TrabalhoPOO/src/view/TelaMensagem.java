@@ -26,7 +26,7 @@ class TelaMensagem extends JDialog implements ActionListener {
     private final PainelLogo painelLogo;
     private final JTextArea areaTxt;
 
-    TelaMensagem(JFrame janela, String titulo, String texto) throws HeadlessException {
+    TelaMensagem(JFrame janela, String titulo, String texto, boolean imagem) throws HeadlessException {
         super(janela, titulo);
         setSize(800, 320);
         setResizable(false);
@@ -48,10 +48,12 @@ class TelaMensagem extends JDialog implements ActionListener {
 
         // Usando a variável de instância painelLogo
         this.painelLogo = new PainelLogo();
-        this.painelLogo.setPreferredSize(new Dimension(200, 220));
-        this.painelLogo.setBorder(new TitledBorder(new LineBorder(Color.gray), ConstantesGlobais.escola));
-        this.painelLogo.setBackground(Color.white);
-        add(this.painelLogo, BorderLayout.WEST);
+        if(imagem) {
+	        this.painelLogo.setPreferredSize(new Dimension(200, 220));
+	        this.painelLogo.setBorder(new TitledBorder(new LineBorder(Color.gray), ConstantesGlobais.escola));
+	        this.painelLogo.setBackground(Color.white);
+	        add(this.painelLogo, BorderLayout.WEST);
+        }
 
         painelBtn = new JPanel();
         botaoFechar = new JButton("fechar");
@@ -59,6 +61,8 @@ class TelaMensagem extends JDialog implements ActionListener {
         painelBtn.add(botaoFechar);
         add(painelBtn, BorderLayout.SOUTH);
     }
+    
+    
 
     @Override
     public void actionPerformed(ActionEvent arg0) {

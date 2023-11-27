@@ -106,7 +106,7 @@ public class ChatClient extends JFrame implements ActionListener {
         enviarButton = new JButton("Enviar");
         areaMensagemPanel.add(enviarButton, BorderLayout.EAST);
 
-        statusConexaoLabel = new JLabel("Status de conexão:");
+        statusConexaoLabel = new JLabel("Status de conexão: Desconectado");
         statusConexaoLabel.setHorizontalAlignment(SwingConstants.CENTER);
         statusConexaoLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         areaSul.add(statusConexaoLabel, BorderLayout.SOUTH);
@@ -127,10 +127,10 @@ public class ChatClient extends JFrame implements ActionListener {
         //JOptionOane.showMessageDialog(this, evento.getActionCommand(), "Ação Solicitada", JOptionPane.INFORMATION_MESSAGE);
 
         if (e.getSource() == sobreItem) {
-            mostrarTelaMensagem(new TelaMensagem(this, "Sobre - " + ConstantesGlobais.versao, ConstantesGlobais.getTextoSobre()));
+            mostrarTelaMensagem(new TelaMensagem(this, "Sobre - " + ConstantesGlobais.versao, ConstantesGlobais.getTextoSobre(), true));
             System.out.println("Clicou em sobre");
         } else if (e.getSource() == ajudaItem) {
-            mostrarTelaMensagem(new TelaMensagem(this, "Ajuda - " + ConstantesAjuda.tituloajuda, ConstantesAjuda.getTextoAjuda()));
+            mostrarTelaMensagem(new TelaMensagem(this, "Ajuda - " + ConstantesGlobais.tituloajuda, ConstantesGlobais.getTextoAjuda(), false));
             System.out.println("Clicou em ajuda");
         } else if (e.getSource() == conectarItem) {
         	conectar();
@@ -153,6 +153,7 @@ public class ChatClient extends JFrame implements ActionListener {
 			s = new Socket(ipAndPort.getIPConnect(), ipAndPort.getPortaConnect());
 	        out = new ObjectOutputStream(s.getOutputStream());
 	        in = new ObjectInputStream(s.getInputStream());
+	        statusConexaoLabel.setText("Status de conexão: Conectado");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

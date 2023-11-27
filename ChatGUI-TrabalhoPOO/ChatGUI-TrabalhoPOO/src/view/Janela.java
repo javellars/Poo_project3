@@ -120,10 +120,10 @@ public class Janela extends JFrame implements ActionListener {
         //JOptionOane.showMessageDialog(this, evento.getActionCommand(), "Ação Solicitada", JOptionPane.INFORMATION_MESSAGE);
 
         if (e.getSource() == sobreItem) {
-            mostrarTelaMensagem(new TelaMensagem(this, "Sobre - " + ConstantesGlobais.versao, ConstantesGlobais.getTextoSobre()));
+            mostrarTelaMensagem(new TelaMensagem(this, "Sobre - " + ConstantesGlobais.versao, ConstantesGlobais.getTextoSobre(), true));
             System.out.println("Clicou em sobre");
         } else if (e.getSource() == ajudaItem) {
-            mostrarTelaMensagem(new TelaMensagem(this, "Ajuda - " + ConstantesAjuda.tituloajuda, ConstantesAjuda.getTextoAjuda()));
+            mostrarTelaMensagem(new TelaMensagem(this, "Ajuda - " + ConstantesGlobais.tituloajuda, ConstantesGlobais.getTextoAjuda(), false));
             System.out.println("Clicou em ajuda");
         } else if (e.getSource() == conectarItem) {
             System.out.println("Clicou em conectar");
