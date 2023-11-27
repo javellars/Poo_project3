@@ -18,6 +18,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import src.view.Popupconnect.IPAndPort;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -128,7 +130,7 @@ public class ChatClient extends JFrame implements ActionListener {
             mostrarTelaMensagem(new TelaMensagem(this, "Sobre - " + ConstantesGlobais.versao, ConstantesGlobais.getTextoSobre()));
             System.out.println("Clicou em sobre");
         } else if (e.getSource() == ajudaItem) {
-        	mostrarTelaMensagem(new TelaMensagem(this, "Ajuda - " + ConstantesGlobais.tituloajuda, ConstantesGlobais.getTextoAjuda()));
+            mostrarTelaMensagem(new TelaMensagem(this, "Ajuda - " + ConstantesAjuda.tituloajuda, ConstantesAjuda.getTextoAjuda()));
             System.out.println("Clicou em ajuda");
         } else if (e.getSource() == conectarItem) {
         	conectar();
@@ -146,9 +148,9 @@ public class ChatClient extends JFrame implements ActionListener {
     
     public void conectar() {
     	new Popupconnect();
-		String ip = Popupconnect.showPopUp();
+    	IPAndPort ipAndPort = Popupconnect.showPopUp();
         try {
-			s = new Socket(ip, 9998);
+			s = new Socket(ipAndPort.getIPConnect(), ipAndPort.getPortaConnect());
 	        out = new ObjectOutputStream(s.getOutputStream());
 	        in = new ObjectInputStream(s.getInputStream());
 		} catch (IOException e) {

@@ -46,7 +46,7 @@ public class ChatServer extends JFrame implements ActionListener {
     ObjectInputStream in;
     // Construtor
 
-    public ChatServer(final JFrame frame) {
+    public ChatServer(final JFrame frame, int porta) {
         try {
         	setTitle("ChatGUI-Grupo 3 -  Servidor");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,7 +57,7 @@ public class ChatServer extends JFrame implements ActionListener {
             componentesSetup();
             acaoSetup();
             
-            ss = new ServerSocket(9998);
+            ss = new ServerSocket(porta);
             s = ss.accept();
             frame.setVisible(false);
             out = new ObjectOutputStream(s.getOutputStream());
@@ -139,7 +139,7 @@ public class ChatServer extends JFrame implements ActionListener {
             mostrarTelaMensagem(new TelaMensagem(this, "Sobre - " + ConstantesGlobais.versao, ConstantesGlobais.getTextoSobre()));
             System.out.println("Clicou em sobre");
         } else if (e.getSource() == ajudaItem) {
-        	mostrarTelaMensagem(new TelaMensagem(this, "Ajuda - " + ConstantesGlobais.tituloajuda, ConstantesGlobais.getTextoAjuda()));
+            mostrarTelaMensagem(new TelaMensagem(this, "Ajuda - " + ConstantesAjuda.tituloajuda, ConstantesAjuda.getTextoAjuda()));
             System.out.println("Clicou em ajuda");
         } else if (e.getSource() == sairItem) {
             System.exit(0);

@@ -1,7 +1,7 @@
-package src.view
+package src.view;
 import javax.swing.*;
 
-public class PopUp {
+public class Popupconnect {
 
     public static class IPAndPort {
         private String IPConnect;

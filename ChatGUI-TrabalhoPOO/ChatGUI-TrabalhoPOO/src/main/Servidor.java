@@ -9,9 +9,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import src.view.ChatServer;
+import src.view.PopupPorta;
 
 public class Servidor {
 	public static void main(String[] args) {
+		new PopupPorta();
+		int porta = PopupPorta.showPopUp();
 		JFrame frame = new JFrame("Servidor");
 	      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	      JPanel panel = new JPanel();
@@ -25,7 +28,7 @@ public class Servidor {
 	      frame.setLocationRelativeTo(null);  
 	      frame.setVisible(true);
 	      
-	      ChatServer ser = new ChatServer(frame);
+	      ChatServer ser = new ChatServer(frame, porta);
 	      ser.setVisible(true);
 	      ser.receberMensagem();
    }
